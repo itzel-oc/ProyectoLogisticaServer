@@ -40,7 +40,7 @@ router.put('/tipocarga/:idTipoCarga', (req, res)=>{
 }));
 }); 
 
-router.delete('/productos/:idProducto', (req, res)=>{
+router.delete('/tipoCarga/:idTipoCarga', (req, res)=>{
     const id_tipoCarga=req.params.idTipoCarga;
  
     TipoCarga.destroy({

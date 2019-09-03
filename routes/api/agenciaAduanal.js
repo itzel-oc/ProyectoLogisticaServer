@@ -3,18 +3,19 @@ const router = express.Router();
 const cors = require("cors");
 
 //User model
-const Proveedor = require("../../models/Proveedores");
+const AgenciaAduanal = require("../../models/AgenciaAduanal");
 
 router.use(cors());
 
-router.get("/proveedores", (req, res) => {
-	Proveedor.findAll().then(proveedores => res.json(proveedores));
+router.get("/agenciaAduanal", (req, res) => {
+	AgenciaAduanal.findAll().then(agenciasAduanales =>
+		res.json(agenciasAduanales)
+	);
 });
 
-router.post("/proveedores", (req, res) => {
-	Proveedor.create({
-		idProveedor: req.body.idProveedor,
-		idRuta: req.body.idRuta,
+router.post("/agenciaAduanal", (req, res) => {
+	AgenciaAduanal.create({
+		idAgenciaAduanal: req.body.idAgenciaAduanal,
 		nombre: req.body.nombre,
 		contacto: req.body.contacto,
 		telefono: req.body.telefono,
@@ -24,18 +25,15 @@ router.post("/proveedores", (req, res) => {
 		CP: req.body.CP,
 		idEstado: req.body.idEstado,
 		idPais: req.body.idPais,
-		RFC: req.body.RFC,
-		diasCredito: req.body.diasCredito,
-		limiteCredito: req.body.limiteCredito
+		RFC: req.body.RFC
 	}).then(result => res.json(result));
 });
 
-router.put("/proveedores/:idProveedor", (req, res) => {
-	const id_proveedor = req.params.idProveedor;
+router.put("/agenciaAduanal/:idAgenciaAduanal", (req, res) => {
+	const id_agenciaAduanal = req.params.idAgenciaAduanal;
 
-	Proveedor.update(
+	AgenciaAduanal.update(
 		{
-			idRuta: req.body.idRuta,
 			nombre: req.body.nombre,
 			contacto: req.body.contacto,
 			telefono: req.body.telefono,
@@ -45,20 +43,18 @@ router.put("/proveedores/:idProveedor", (req, res) => {
 			CP: req.body.CP,
 			idEstado: req.body.idEstado,
 			idPais: req.body.idPais,
-			RFC: req.body.RFC,
-			diasCredito: req.body.diasCredito,
-			limiteCredito: req.body.limiteCredito
+			RFC: req.body.RFC
 		},
 		{
 			where: {
-				idProveedor: id_proveedor
+				idAgenciaAduanal: id_agenciaAduanal
 			}
 		}
 	)
 		.then(todo =>
 			res.json({
 				error: false,
-				message: "Proveedor Actualizado."
+				message: "Agencia Aduanal  Actualizada."
 			})
 		)
 		.catch(error =>
@@ -69,18 +65,18 @@ router.put("/proveedores/:idProveedor", (req, res) => {
 		);
 });
 
-router.delete("/proveedores/:idProveedor", (req, res) => {
-	const id_proveedor = req.params.idProveedor;
+router.delete("/agenciaAduanal/:idAgenciaAduanal", (req, res) => {
+	const id_agenciaAduanal = req.params.idAgenciaAduanal;
 
-	Proveedor.destroy({
+	AgenciaAduanal.destroy({
 		where: {
-			idProveedor: id_proveedor
+			idAgenciaAduanal: id_agenciaAduanal
 		}
 	})
 		.then(status =>
 			res.json({
 				error: false,
-				message: "Proveedor Eliminado."
+				message: "Agencia Aduanal Eliminada."
 			})
 		)
 		.catch(error =>

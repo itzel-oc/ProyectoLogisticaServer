@@ -4,9 +4,9 @@ const sequelize = new Sequelize(
 	"mysql://root:againstme90!@localhost:3306/db_blas"
 );
 
-const Cliente = sequelize.define("tbl_clientes", {
+const AgenciaAduanal = sequelize.define("tbl_agencia_aduanal", {
 	// attributes
-	idCliente: {
+	idAgenciaAduanal: {
 		type: Sequelize.NUMBER,
 		primaryKey: true
 	},
@@ -15,7 +15,8 @@ const Cliente = sequelize.define("tbl_clientes", {
 		allowNull: false
 	},
 	contacto: {
-		type: Sequelize.STRING
+		type: Sequelize.STRING,
+		allowNull: false
 	},
 	telefono: {
 		type: Sequelize.STRING
@@ -32,25 +33,17 @@ const Cliente = sequelize.define("tbl_clientes", {
 	CP: {
 		type: Sequelize.STRING
 	},
-	estado: {
-		type: Sequelize.STRING
+	idEstado: {
+		type: Sequelize.NUMBER,
+		foreignKey: true
 	},
-	pais: {
-		type: Sequelize.STRING
+	idPais: {
+		type: Sequelize.NUMBER,
+		foreignKey: true
 	},
 	RFC: {
 		type: Sequelize.STRING
-	},
-	diasCredito: {
-		type: Sequelize.NUMBER
-	},
-	limiteCredito: {
-		type: Sequelize.NUMBER
 	}
 });
 
-Cliente.associate = models => {
-	Cliente.hasMany(models.flete);
-};
-
-module.exports = Cliente;
+module.exports = AgenciaAduanal;

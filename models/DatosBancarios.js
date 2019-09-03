@@ -4,23 +4,35 @@ const sequelize = new Sequelize(
 	"mysql://root:againstme90!@localhost:3306/db_blas"
 );
 
-const Cliente = sequelize.define("tbl_clientes", {
+const DatosBancarios = sequelize.define("tbl_datos_bancarios", {
 	// attributes
-	idCliente: {
+	idDatosBancarios: {
 		type: Sequelize.NUMBER,
 		primaryKey: true
 	},
-	nombre: {
+	idCliente: {
+		type: Sequelize.NUMBER,
+		foreignKey: true
+	},
+	idProveedor: {
+		type: Sequelize.NUMBER,
+		foreignKey: true
+	},
+	idBanco: {
+		type: Sequelize.NUMBER,
+		foreignKey: true
+	},
+	cuenta: {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
-	contacto: {
+	clabe: {
 		type: Sequelize.STRING
 	},
-	telefono: {
+	ABA: {
 		type: Sequelize.STRING
 	},
-	email: {
+	SWIFT: {
 		type: Sequelize.STRING
 	},
 	direccion: {
@@ -32,25 +44,17 @@ const Cliente = sequelize.define("tbl_clientes", {
 	CP: {
 		type: Sequelize.STRING
 	},
-	estado: {
+	idEstado: {
+		type: Sequelize.NUMBER,
+		foreignKey: true
+	},
+	idPais: {
+		type: Sequelize.NUMBER,
+		foreignKey: true
+	},
+	beneficiario: {
 		type: Sequelize.STRING
-	},
-	pais: {
-		type: Sequelize.STRING
-	},
-	RFC: {
-		type: Sequelize.STRING
-	},
-	diasCredito: {
-		type: Sequelize.NUMBER
-	},
-	limiteCredito: {
-		type: Sequelize.NUMBER
 	}
 });
 
-Cliente.associate = models => {
-	Cliente.hasMany(models.flete);
-};
-
-module.exports = Cliente;
+module.exports = AgenciaAduanal;
