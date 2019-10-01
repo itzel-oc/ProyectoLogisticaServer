@@ -18,13 +18,11 @@ const Orden = sequelize.define("tbl_ordenes", {
 		type: Sequelize.NUMBER,
 		foreignKey: true
 	},
-	idProducto: {
-		type: Sequelize.NUMBER,
-		foreignKey: true
+	producto: {
+		type: Sequelize.STRING
 	},
-	idTipoCarga: {
-		type: Sequelize.NUMBER,
-		foreignKey: true
+	tipoCarga: {
+		type: Sequelize.STRING
 	},
 	fechaCarga: {
 		type: Sequelize.DATE,

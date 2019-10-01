@@ -18,9 +18,11 @@ const DatosBancarios = sequelize.define("tbl_datos_bancarios", {
 		type: Sequelize.NUMBER,
 		foreignKey: true
 	},
-	idBanco: {
-		type: Sequelize.NUMBER,
-		foreignKey: true
+	banco: {
+		type: Sequelize.STRING
+	},
+	beneficiario: {
+		type: Sequelize.STRING
 	},
 	cuenta: {
 		type: Sequelize.STRING,
@@ -44,15 +46,10 @@ const DatosBancarios = sequelize.define("tbl_datos_bancarios", {
 	CP: {
 		type: Sequelize.STRING
 	},
-	idEstado: {
-		type: Sequelize.NUMBER,
-		foreignKey: true
+	estado: {
+		type: Sequelize.STRING
 	},
-	idPais: {
-		type: Sequelize.NUMBER,
-		foreignKey: true
-	},
-	beneficiario: {
+	pais: {
 		type: Sequelize.STRING
 	}
 });

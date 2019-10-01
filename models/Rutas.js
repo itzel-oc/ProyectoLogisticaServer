@@ -14,9 +14,12 @@ const Ruta = sequelize.define("tbl_rutas", {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
-	ciudadOrigen: {
+	cdOrigen: {
 		type: Sequelize.STRING,
 		allowNull: true
+	},
+	CPOrigen: {
+		type: Sequelize.STRING,
 	},
 	edoOrigen: {
 		type: Sequelize.STRING,
@@ -26,7 +29,11 @@ const Ruta = sequelize.define("tbl_rutas", {
 		type: Sequelize.STRING,
 		allowNull: true
 	},
-	ciudadDestino: {
+	cdDestino: {
+		type: Sequelize.STRING,
+		allowNull: true
+	},
+	CPDestino: {
 		type: Sequelize.STRING,
 		allowNull: true
 	},

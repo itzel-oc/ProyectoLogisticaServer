@@ -18,6 +18,9 @@ const Proveedor = sequelize.define("tbl_proveedores", {
 		type: Sequelize.STRING,
 		allowNull: true
 	},
+	RFC: {
+		type: Sequelize.STRING
+	},
 	contacto: {
 		type: Sequelize.STRING
 	},
@@ -36,15 +39,10 @@ const Proveedor = sequelize.define("tbl_proveedores", {
 	CP: {
 		type: Sequelize.STRING
 	},
-	idEstado: {
-		type: Sequelize.NUMBER,
-		foreignKey: true
+	estado: {
+		type: Sequelize.STRING
 	},
-	idPais: {
-		type: Sequelize.NUMBER,
-		foreignKey: true
-	},
-	RFC: {
+	pais: {
 		type: Sequelize.STRING
 	},
 	diasCredito: {

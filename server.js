@@ -7,7 +7,7 @@ const rutas=require('./routes/api/rutas');
 const productos=require('./routes/api/productos');
 const tipoCarga=require('./routes/api/tipoCarga');
 const ordenes=require('./routes/api/ordenes');
-const fletes=require('./routes/api/fletes');
+const cargas=require('./routes/api/cargas');
 
 
 app.listen(3000, () =>
@@ -22,6 +22,6 @@ app.use('/', rutas);
 app.use('/', productos);
 app.use('/', tipoCarga);
 app.use('/', ordenes);
-app.use('/', fletes);
+app.use('/', cargas);
 
  

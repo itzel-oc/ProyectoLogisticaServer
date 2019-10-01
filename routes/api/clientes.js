@@ -11,6 +11,14 @@ router.get("/clientes", (req, res) => {
 	Cliente.findAll().then(clientes => res.json(clientes));
 });
 
+
+
+router.get("/clientes/:idCliente", (req, res) => {
+	const id_cliente = req.params.idCliente;
+	Cliente.findByPk( id_cliente)
+	.then(cliente => res.json(cliente));
+});
+
 router.post("/clientes", (req, res) => {
 	Cliente.create({
 		idCliente: req.body.idCliente,

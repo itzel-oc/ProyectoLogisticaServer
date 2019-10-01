@@ -14,6 +14,9 @@ const AgenciaAduanal = sequelize.define("tbl_agencia_aduanal", {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
+	RFC: {
+		type: Sequelize.STRING
+	},
 	contacto: {
 		type: Sequelize.STRING,
 		allowNull: false
@@ -33,16 +36,11 @@ const AgenciaAduanal = sequelize.define("tbl_agencia_aduanal", {
 	CP: {
 		type: Sequelize.STRING
 	},
-	idEstado: {
-		type: Sequelize.NUMBER,
-		foreignKey: true
+	estado: {
+		type: Sequelize.STRING	
 	},
-	idPais: {
-		type: Sequelize.NUMBER,
-		foreignKey: true
-	},
-	RFC: {
-		type: Sequelize.STRING
+	Pais: {
+		type: Sequelize.STRING,
 	}
 });
 
