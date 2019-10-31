@@ -1,12 +1,12 @@
 const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
-	"mysql://root:againstme90!@localhost:3306/db_blas"
+	"mysql://root:soap123@localhost:3306/db_blas"
 );
 
 const DatosBancarios = sequelize.define("tbl_datos_bancarios", {
 	// attributes
-	idDatosBancarios: {
+	idDatoBanco: {
 		type: Sequelize.NUMBER,
 		primaryKey: true
 	},
@@ -52,6 +52,9 @@ const DatosBancarios = sequelize.define("tbl_datos_bancarios", {
 	pais: {
 		type: Sequelize.STRING
 	}
+
+}, {
+	timestamps: false
 });
 
-module.exports = AgenciaAduanal;
+module.exports = DatosBancarios;

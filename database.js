@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('mysql://root:againstme90!@localhost:3306/db_blas');
+const sequelize = new Sequelize('mysql://root:soap123@localhost:3306/db_blas');
 
 sequelize
   .authenticate()

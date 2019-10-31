@@ -1,14 +1,15 @@
 const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
-	"mysql://root:againstme90!@localhost:3306/db_blas"
+	"mysql://root:soap123@localhost:3306/db_blas"
 );
 
 const Proveedor = sequelize.define("tbl_proveedores", {
 	// attributes
 	idProveedor: {
 		type: Sequelize.NUMBER,
-		primaryKey: true
+		primaryKey: true,
+		autoIncrement: true
 	},
 	idRuta: {
 		type: Sequelize.NUMBER,

@@ -10,16 +10,22 @@ router.use(cors());
 router.get('/ordenes', (req, res)=>{
     Orden.findAll()
     .then(ordenes=>res.json(ordenes))
-}); 
+});
+
+router.get('/ordenes/:idPO', (req, res) => {
+  Orden.findByPk( req.params.idPO ).then((orden) => res.json(orden));
+});
 
  router.post('/ordenes', (req, res)=>{
  Orden.create({
    idPO:req.body.idPO,
-   idCliente:req.body.idRuta,
+   idCliente:req.body.idCliente,
    idRuta:req.body.idRuta,
-   idProducto:req.body.idRuta,
-   idTipoCarga:req.body.idTipoCarga,
-   idFechaCarga:req.body.idFechaCarga,
+   producto:req.body.producto,
+   tipoCarga:req.body.tipoCarga,
+   fechaCarga:req.body.fechaCarga,
+   direccionOrigen: req.body.direccionOrigen,
+   direccionDestino: req.body.direccionDestino
 
  })
  .then(result=>res.json(result))

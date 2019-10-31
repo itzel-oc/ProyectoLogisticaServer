@@ -4,29 +4,41 @@ const cors = require("cors");
 
 //User model
 const AgenciaAduanal = require("../../models/AgenciaAduanal");
+const DatosBancarios = require("../../models/DatosBancarios");
 
 router.use(cors());
 
-router.get("/datosBancarios", (req, res) => {
-	AgenciaAduanal.findAll().then(agenciasAduanales =>
-		res.json(agenciasAduanales)
-	);
-});
+// router.get("/datosBancarios", (req, res) => {
+// 	AgenciaAduanal.findAll().then(agenciasAduanales =>
+// 		res.json(agenciasAduanales)
+// 	);
+// });
 
 router.post("/datosBancarios", (req, res) => {
-	AgenciaAduanal.create({
-		idDatosBancarios: req.body.idDatosBancarios,
-		nombre: req.body.nombre,
-		contacto: req.body.contacto,
-		telefono: req.body.telefono,
-		email: req.body.email,
-		direccion: req.body.direccion,
-		ciudad: req.body.ciudad,
-		CP: req.body.CP,
-		idEstado: req.body.idEstado,
-		idPais: req.body.idPais,
-		RFC: req.body.RFC
-	}).then(result => res.json(result));
+	DatosBancarios.create({
+		idDatosBanco: req.body.idDatosBanco,
+		idCliente: req.body.idCliente ? req.body.idCliente : null,
+		idProveedor: req.body.idProveedor ? req.body.idProveedor : null,
+    cuenta: req.body.cuenta,
+    clabe: req.body.clabe,
+    ABA: req.body.ABA,
+    SWIFT: req.body.SWIFT,
+    direccion: req.body.direccion,
+    CP: req.body.CP,
+    estado: req.body.estado,
+    pais: req.body.pais
+	})
+});
+
+router.get("/datosBancarios:idDatoBanco", (req, res) => {
+	const { idCliente, idProveedor } = req.params;
+	if (idCliente) {
+		DatosBancarios.findByPk(idCliente).
+		then((datosBancarios) => res.json(datosBancarios) )
+	} else {
+		DatosBancarios.findByPk(idProveedor).
+		then((datosBancarios) => res.json(datosBancarios) )
+	}
 });
 
 router.put("/datosBancarios/:idDatosBancarios", (req, res) => {

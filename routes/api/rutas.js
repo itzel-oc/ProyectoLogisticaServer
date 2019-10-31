@@ -11,6 +11,12 @@ router.get("/rutas", (req, res) => {
   Ruta.findAll().then(rutas => res.json(rutas));
 });
 
+router.get("/rutas/:idRuta", (req, res) => {
+  const id_ruta = req.params.idRuta;
+	Ruta.findByPk( id_ruta)
+	.then(ruta => res.json(ruta));
+})
+
 router.post("/rutas", (req, res) => {
   Ruta.create({
     idRuta: req.body.idRuta,
@@ -29,9 +35,9 @@ router.post("/rutas", (req, res) => {
 router.put("/rutas/:idRuta", (req, res) => {
   const id_ruta = req.params.idRuta;
 
-  Proveedor.update(
+  Ruta.update(
     {
-      ciudadOrigen: req.body.ciudadOrigen,
+      cdOrigen: req.body.cdOrigen,
       edoOrigen: req.body.edoOrigen,
       paisOrigen: req.body.paisOrigen,
       ciudadDestino: req.body.ciudadDestino,

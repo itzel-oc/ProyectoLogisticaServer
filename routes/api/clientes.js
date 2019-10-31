@@ -4,7 +4,7 @@ const cors = require("cors");
 
 //User model
 const Cliente = require("../../models/Clientes");
-
+const DatosBancarios = require("../../models/DatosBancarios");
 router.use(cors());
 
 router.get("/clientes", (req, res) => {
@@ -14,14 +14,18 @@ router.get("/clientes", (req, res) => {
 
 
 router.get("/clientes/:idCliente", (req, res) => {
-	const id_cliente = req.params.idCliente;
-	Cliente.findByPk( id_cliente)
-	.then(cliente => res.json(cliente));
+	const {idCliente} = req.params;
+	Cliente.findByPk( idCliente)
+	.then(cliente => {
+    DatosBancarios.findAll({where: {idCliente : cliente.idCliente} })
+    .then((response) =>  {
+			res.send({DatosBancarios: response, ...cliente.dataValues});
+		})
+	});
 });
 
 router.post("/clientes", (req, res) => {
 	Cliente.create({
-		idCliente: req.body.idCliente,
 		nombre: req.body.nombre,
 		contacto: req.body.contacto,
 		telefono: req.body.telefono,
@@ -34,7 +38,27 @@ router.post("/clientes", (req, res) => {
 		RFC: req.body.RFC,
 		diasCredito: req.body.diasCredito,
 		limiteCredito: req.body.limiteCredito
-	}).then(result => res.json(result));
+	}).then(result => {
+    if (req.body.DatosBancarios) {
+      DatosBancarios.create({
+        idDatoBanco: req.body.DatosBancarios.idDatoBanco,
+        idCliente: result.idCliente,
+        banco: req.body.DatosBancarios.banco,
+        beneficiario: req.body.DatosBancarios.beneficiario,
+        cuenta: req.body.DatosBancarios.cuenta,
+        clabe: req.body.DatosBancarios.clabe,
+        ABA: req.body.DatosBancarios.ABA,
+        SWIFT: req.body.DatosBancarios.SWIFT,
+        direccion: req.body.DatosBancarios.direccion,
+        ciudad: req.body.DatosBancarios.ciudad,
+        CP: req.body.DatosBancarios.CP,
+        estado: req.body.DatosBancarios.estado,
+        pais: req.body.DatosBancarios.pais
+      }).then(response => res.json(result));
+    } else {
+      res.json(result)
+    }
+  });
 });
 
 router.put("/clientes/:idCliente", (req, res) => {
@@ -62,10 +86,28 @@ router.put("/clientes/:idCliente", (req, res) => {
 		}
 	)
 		.then(todo =>
-			res.json({
-				error: false,
-				message: "Cliente Actualizado."
-			})
+			DatosBancarios.update({
+        banco: req.body.DatosBancarios.banco,
+        beneficiario: req.body.DatosBancarios.beneficiario,
+        cuenta: req.body.DatosBancarios.cuenta,
+        clabe: req.body.DatosBancarios.clabe,
+        ABA: req.body.DatosBancarios.ABA,
+        SWIFT: req.body.DatosBancarios.SWIFT,
+        direccion: req.body.DatosBancarios.direccion,
+        ciudad: req.body.DatosBancarios.ciudad,
+        CP: req.body.DatosBancarios.CP,
+        estado: req.body.DatosBancarios.estado,
+        pais: req.body.DatosBancarios.pais
+			}, {
+        where: {
+          idCliente: id_cliente
+        }
+      }).then(()=>{
+        res.json({
+          error: false,
+          message: "Cliente Actualizado."
+        })
+      })
 		)
 		.catch(error =>
 			res.json({
