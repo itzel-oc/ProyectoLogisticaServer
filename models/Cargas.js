@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
-	"mysql://root:soap123@localhost:3306/db_blas"
+	`mysql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:3306/${process.env.DB_NAME}`
 );
 
 const Carga = sequelize.define("tbl_cargas", {
@@ -30,7 +30,7 @@ const Carga = sequelize.define("tbl_cargas", {
 	temperatura: {
 		type: Sequelize.NUMBER
 	},
-	fechaDesCarga: {
+	fechaDescarga: {
 		type: Sequelize.DATE
 	},
 	precioCliente: {
@@ -43,6 +43,9 @@ const Carga = sequelize.define("tbl_cargas", {
 		type: Sequelize.STRING
 	},
 	estatusPago: {
+		type: Sequelize.STRING
+	},
+	estatusPagoProveedor: {
 		type: Sequelize.STRING
 	},
 	comisionBroker: {

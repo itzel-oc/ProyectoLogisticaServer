@@ -1,14 +1,15 @@
 const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
-	"mysql://root:againstme90!@localhost:3306/db_blas"
+	`mysql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:3306/${process.env.DB_NAME}`
 );
 
 const AgenciaAduanal = sequelize.define("tbl_agencia_aduanal", {
 	// attributes
 	idAgenciaAduanal: {
 		type: Sequelize.NUMBER,
-		primaryKey: true
+		primaryKey: true,
+		autoIncrement: true
 	},
 	nombre: {
 		type: Sequelize.STRING,
@@ -42,6 +43,9 @@ const AgenciaAduanal = sequelize.define("tbl_agencia_aduanal", {
 	Pais: {
 		type: Sequelize.STRING,
 	}
+}, {
+	freezeTableName: true,
+	timestamps: false
 });
 
 module.exports = AgenciaAduanal;

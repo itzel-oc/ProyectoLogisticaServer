@@ -11,6 +11,11 @@ router.get("/cargas", (req, res) => {
 	Carga.findAll().then(cargas => res.json(cargas));
 });
 
+router.get("/cargas/:idCarga", (req, res) => {
+	const { idCarga } = req.params;
+	Carga.findByPk(idCarga).then(response => res.json(response));
+});
+
 router.post("/cargas", (req, res) => {
 	Carga.create({
 		idCarga: req.body.idCarga,
@@ -23,10 +28,11 @@ router.post("/cargas", (req, res) => {
 		fechaDescarga: req.body.fechaDescarga,
 		precioCliente: req.body.precioCliente,
 		costoProveedor: req.body.precioCliente,
-		idEstatusCarga: req.body.idEstatusCarga,
-		idEstatusPago: req.body.idEstatusPago,
+		estatusCarga: req.body.estatusCarga,
+		estatusPago: req.body.estatusPago,
+		estatusPagoProveedor: req.body.estatusPagoProveedor,
 		comisionBroker: req.body.comisionBroker,
-		idMetodoPago: req.body.idMetodoPago,
+		metodoPago: req.body.metodoPago,
 		idAgenciaAduanal: req.body.idAgenciaAduanal,
 		placasTractor: req.body.placasTractor,
 		ecoTractor: req.body.ecoTractor,
@@ -53,11 +59,12 @@ router.put("/cargas/:idCarga", (req, res) => {
 			temperatura: req.body.temperatura,
 			fechaDescarga: req.body.fechaDescarga,
 			precioCliente: req.body.precioCliente,
-			costoProveedor: req.body.precioCliente,
-			idEstatusCarga: req.body.idEstatusCarga,
-			idEstatusPago: req.body.idEstatusPago,
+			costoProveedor: req.body.costoProveedor,
+			estatusCarga: req.body.estatusCarga,
+			estatusPago: req.body.estatusPago,
+			estatusPagoProveedor: req.body.estatusPagoProveedor,
 			comisionBroker: req.body.comisionBroker,
-			idMetodoPago: req.body.idMetodoPago,
+			metodoPago: req.body.metodoPago,
 			idAgenciaAduanal: req.body.idAgenciaAduanal,
 			placasTractor: req.body.placasTractor,
 			ecoTractor: req.body.ecoTractor,

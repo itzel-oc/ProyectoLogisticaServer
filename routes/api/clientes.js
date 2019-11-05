@@ -86,7 +86,7 @@ router.put("/clientes/:idCliente", (req, res) => {
 		}
 	)
 		.then(todo =>
-			DatosBancarios.update({
+		DatosBancarios.update({
         banco: req.body.DatosBancarios.banco,
         beneficiario: req.body.DatosBancarios.beneficiario,
         cuenta: req.body.DatosBancarios.cuenta,

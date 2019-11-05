@@ -23,8 +23,8 @@ router.post("/agenciaAduanal", (req, res) => {
 		direccion: req.body.direccion,
 		ciudad: req.body.ciudad,
 		CP: req.body.CP,
-		idEstado: req.body.idEstado,
-		idPais: req.body.idPais,
+		estado: req.body.estado,
+		Pais: req.body.Pais,
 		RFC: req.body.RFC
 	}).then(result => res.json(result));
 });
