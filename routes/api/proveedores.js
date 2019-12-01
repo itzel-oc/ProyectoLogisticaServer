@@ -25,7 +25,7 @@ router.get("/proveedores/:idProveedor", (req, res) => {
 
 router.post("/proveedores", (req, res) => {
 	Proveedor.create({
-		idRuta: req.body.idRuta,
+		rutas: req.body.rutas,
 		nombre: req.body.nombre,
 		contacto: req.body.contacto,
 		telefono: req.body.telefono,
@@ -67,7 +67,7 @@ router.put("/proveedores/:idProveedor", (req, res) => {
 
 	Proveedor.update(
 		{
-			idRuta: req.body.idRuta,
+			rutas: req.body.rutas,
 			nombre: req.body.nombre,
 			contacto: req.body.contacto,
 			telefono: req.body.telefono,

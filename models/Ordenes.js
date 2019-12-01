@@ -8,7 +8,8 @@ const Orden = sequelize.define("tbl_ordenes", {
 	// attributes
 	idPO: {
 		type: Sequelize.NUMBER,
-		primaryKey: true
+		primaryKey: true,
+		autoIncrement: true
 	},
 	idCliente: {
 		type: Sequelize.NUMBER,
@@ -19,6 +20,9 @@ const Orden = sequelize.define("tbl_ordenes", {
 		foreignKey: true
 	},
 	producto: {
+		type: Sequelize.STRING
+	},
+	PONumber: {
 		type: Sequelize.STRING
 	},
 	tipoCarga: {

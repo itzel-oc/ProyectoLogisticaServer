@@ -15,6 +15,9 @@ const Proveedor = sequelize.define("tbl_proveedores", {
 		type: Sequelize.NUMBER,
 		foreignKey: true
 	},
+	rutas: {
+		type: Sequelize.JSON
+	},
 	nombre: {
 		type: Sequelize.STRING,
 		allowNull: true

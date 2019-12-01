@@ -18,10 +18,10 @@ router.get('/ordenes/:idPO', (req, res) => {
 
  router.post('/ordenes', (req, res)=>{
  Orden.create({
-   idPO:req.body.idPO,
    idCliente:req.body.idCliente,
    idRuta:req.body.idRuta,
    producto:req.body.producto,
+   PONumber: req.body.PONumber,
    tipoCarga:req.body.tipoCarga,
    fechaCarga:req.body.fechaCarga,
    direccionOrigen: req.body.direccionOrigen,
@@ -35,11 +35,14 @@ router.put('/ordenes/:idPO', (req, res)=>{
  const id_PO=req.params.idPO;
  
  Orden.update({    
-    idCliente:req.body.idRuta,
+    idCliente:req.body.idCliente,
     idRuta:req.body.idRuta,
-    idProducto:req.body.idRuta,
-    idTipoCarga:req.body.idTipoCarga,
-    idFechaCarga:req.body.idFechaCarga,
+    producto:req.body.producto,
+    tipoCarga:req.body.tipoCarga,
+    PONumber: req.body.PONumber,
+    fechaCarga:req.body.fechaCarga,
+    direccionOrigen: req.body.direccionOrigen,
+    direccionDestino: req.body.direccionDestino
  },{
    where: {
     idPO:id_PO
@@ -49,10 +52,7 @@ router.put('/ordenes/:idPO', (req, res)=>{
    error: false,
    message: 'Orden (PO) Actualizada.'
 }))
-.catch(error => res.json({
-   error: true,
-   error: error
-}));
+
 }); 
 
 router.delete('/ordenes/:idPO', (req, res)=>{

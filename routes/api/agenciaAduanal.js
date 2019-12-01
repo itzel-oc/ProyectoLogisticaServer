@@ -13,6 +13,11 @@ router.get("/agenciaAduanal", (req, res) => {
 	);
 });
 
+router.get("/agenciaAduanal/:idAgenciaAduanal", (req, res) => {
+	const {idAgenciaAduanal} = req.params;
+	AgenciaAduanal.findByPk(idAgenciaAduanal).then(agencia => res.json(agencia));
+});
+
 router.post("/agenciaAduanal", (req, res) => {
 	AgenciaAduanal.create({
 		idAgenciaAduanal: req.body.idAgenciaAduanal,
